@@ -1,0 +1,2 @@
+# AdResources
+Resources for advertising
