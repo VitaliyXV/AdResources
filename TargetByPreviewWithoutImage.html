@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Open Graph metadata (primary source for your readMetaContent calls) -->
+  <meta property="og:title" content="Example PREVIEW Title" />
+  <meta property="og:description" content="This is an example Open Graph description for the page." />
+  <meta property="og:site_name" content="Example Site Name" />
+
+  <!-- Optional: standard metadata used as fallback (metadata.title / metadata.description / metadata.image) -->
+  <title>Fallback Page Title</title>
+  <meta name="description" content="Fallback meta description if og:description is not present." />
+  <meta  property="og:image" name="image" content="https://raw.githubusercontent.com/VitaliyXV/AdResources/refs/heads/main/advertyBox.png" />
+
+  <script>
+    // Example metadata object used as fallback in your code
+    const metadata = {
+      title: document.title || "Default Title",
+      description:
+        document.querySelector('meta[name="description"]')?.content ||
+        "Default description",
+      image:
+        document.querySelector('meta[name="image"]')?.content ||
+        "https://example.com/images/default-image.jpg",
+    };
+
+    // Example implementation of readMetaContent that reads OG tags
+    function readMetaContent(property) {
+      const meta = document.querySelector(`meta[property="${property}"]`);
+      return meta ? meta.content : "";
+    }
+
+    // Your code:
+    const title = readMetaContent("og:title") ? readMetaContent("og:title") : metadata.title;
+    const description = readMetaContent("og:description")
+      ? readMetaContent("og:description")
+      : metadata.description;
+    const image = readMetaContent("og:image")
+      ? readMetaContent("og:image")
+      : metadata.image;
+    const siteName = readMetaContent("og:site_name");
+
+    console.log({ title, description, image, siteName });
+  </script>
+</head>
+<body>
+  <h1>Check the console for extracted metadata</h1>
+  <img src="https://raw.githubusercontent.com/VitaliyXV/AdResources/refs/heads/main/advertyBox.png" />
+</body>
+</html>
